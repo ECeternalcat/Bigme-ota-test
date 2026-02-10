@@ -44,19 +44,9 @@ After registration, the script queries the server for firmware updates. The requ
 ## Encryption and Decryption
 All communication with the server is encrypted using RSA. The script handles both encryption of outgoing payloads and decryption of incoming responses.
 
-# Known Issues
-Server Validation Failure
-Currently, the server validates the request and may reject it if certain conditions are not met (e.g., incorrect signature, invalid device information, or outdated version). As a result:
+## Known Issues
 
-The server responds successfully but does not include a firmware download link.
-This behavior is expected when the validation fails.
-Workaround
-Ensure the following:
-
-The device information (SN, MODEL, V_NAME) matches the server's expectations.
-The request signature (xrz_sign) is correctly calculated using the MD5 hash of the concatenated parameters.
-The firmware version being queried (QUERY_VERSION) is supported by the server.
-If the issue persists, contact the server administrator for further assistance.
+- **Firmware Download Link Not Returned**: Even with correct parameters, the server currently does not return a firmware download link. This may be due to server-side restrictions, such as recording the device's serial number or version history.
 
 ## Example Output
 [*] Step 1: Performing device registration (Version: 3.0.6)...
